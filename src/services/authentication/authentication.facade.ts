@@ -32,7 +32,7 @@ export class AuthenticationFacade {
       firstName: splitedName[0],
       lastName: splitedName.slice(1).join(' '),
     }
-    const response = await axios.post(`${servicesConfig.authenticationUrl}/signup`, transformData);
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signup/create`, transformData);
     return response.data;
   }
 }
