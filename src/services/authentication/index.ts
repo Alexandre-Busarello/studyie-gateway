@@ -40,7 +40,7 @@ const MAP_OF_FUNCTIONS = {
 export class AuthenticationService {
   public static async makeRequest(req: any): Promise<any> {
     const paths = req.url.split('/');
-    const path = `/${paths.slice(2)}`;
+    const path = `/${paths.slice(2).join('/')}`;
 
     const route = MAP_OF_FUNCTIONS[path];
     const params = getParamsByReq(req, route.options);
