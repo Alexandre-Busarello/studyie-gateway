@@ -8,7 +8,11 @@ export interface SignInByFacebookDto {
 }
 
 export interface SignInByGoogleDto {
-  user: any;
+  externalId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  pictureUrl: string;
 }
 
 export interface SignInResponseDto {
