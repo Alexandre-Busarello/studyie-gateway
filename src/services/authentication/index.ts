@@ -5,7 +5,6 @@ import { getParamsByReq } from '@app/services/helpers';
 const MAP_OF_FUNCTIONS = {
   '/signin': {
     method: AuthenticationFacade.signIn,
-    destinationUrl: '/signin/login',
     options: {
       httpMethod: 'POST',
       paramsTypes: ['BODY']
@@ -13,7 +12,6 @@ const MAP_OF_FUNCTIONS = {
   },
   '/signup': {
     method: AuthenticationFacade.signUp,
-    destinationUrl: '/signup/create',
     options: {
       httpMethod: 'POST',
       paramsTypes: ['BODY']
@@ -21,7 +19,6 @@ const MAP_OF_FUNCTIONS = {
   },
   '/facebook/signin': {
     method: AuthenticationFacade.signInByFacebook,
-    destinationUrl: '/signin/facebook',
     options: {
       httpMethod: 'POST',
       paramsTypes: ['BODY']
@@ -29,7 +26,6 @@ const MAP_OF_FUNCTIONS = {
   },
   '/google/signin': {
     method: AuthenticationFacade.signInByGoogle,
-    destinationUrl: '/signin/google',
     options: {
       httpMethod: 'POST',
       paramsTypes: ['BODY']
@@ -46,16 +42,16 @@ export class AuthenticationService {
     const params = getParamsByReq(req, route.options);
 
     if (params.body && params.params) {
-      return await route.method(params.params, params.body, route.destinationUrl);
+      return await route.method(params.params, params.body);
     }
     if (params.body) {
-      return await route.method(params.body, route.destinationUrl);
+      return await route.method(params.body);
     }
     if (params.query && params.params) {
-      return await route.method(params.params, params.query, route.destinationUrl);
+      return await route.method(params.params, params.query);
     }
     if (params.query) {
-      return await route.method(params.query, route.destinationUrl);
+      return await route.method(params.query);
     }
   }
 }

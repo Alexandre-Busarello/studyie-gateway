@@ -9,29 +9,30 @@ import {
 import servicesConfig from '@app/config/servicesConfig';
 
 export class AuthenticationFacade {
-  public static async signIn(data: SignInDto, destinationUrl: string): Promise<SignInResponseDto> {
-    const response = await axios.post(`${servicesConfig.authenticationUrl}${destinationUrl}`, data);
+  public static async signIn(data: SignInDto): Promise<SignInResponseDto> {
+    console.log(`${servicesConfig.authenticationUrl}/signin/login`)
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signin/login`, data);
     return response.data;
   }
 
-  public static async signInByFacebook(data: SignInByFacebookDto, destinationUrl: string): Promise<SignInResponseDto> {
-    const response = await axios.post(`${servicesConfig.authenticationUrl}${destinationUrl}`, data);
+  public static async signInByFacebook(data: SignInByFacebookDto): Promise<SignInResponseDto> {
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signin/facebook`, data);
     return response.data;
   }
 
-  public static async signInByGoogle(data: SignInByGoogleDto, destinationUrl: string): Promise<SignInResponseDto> {
-    const response = await axios.post(`${servicesConfig.authenticationUrl}${destinationUrl}`, data);
+  public static async signInByGoogle(data: SignInByGoogleDto): Promise<SignInResponseDto> {
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signin/google`, data);
     return response.data;
   }
 
-  public static async signUp(data: SignUpDto, destinationUrl: string): Promise<SignInResponseDto> {
+  public static async signUp(data: SignUpDto): Promise<SignInResponseDto> {
     const splitedName = data.name.split(' ');
     const transformData = {
       ...data,
       firstName: splitedName[0],
       lastName: splitedName.slice(1).join(' '),
     }
-    const response = await axios.post(`${servicesConfig.authenticationUrl}${destinationUrl}`, transformData);
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signup`, transformData);
     return response.data;
   }
 }
