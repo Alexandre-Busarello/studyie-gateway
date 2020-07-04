@@ -8,7 +8,7 @@ import { HeadersType } from '@app/dtos/request.dtos'
 
 export class StudentStrategyMethods {
   public static async getStudentLessons(headers: HeadersType): Promise<LessonDto> {
-    return await LessonGateway.getAllLesson(headers);
+    return await LessonGateway.getLessonsByStudent(headers);
   }
 
   public static async getLessonDetails(params: Params, headers: HeadersType): Promise<LessonDto> {

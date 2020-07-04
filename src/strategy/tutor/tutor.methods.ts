@@ -15,7 +15,7 @@ export class TutorStrategyMethods {
   }
 
   public static async getTutorLessons(headers: HeadersType): Promise<LessonDto> {
-    return await LessonGateway.getLessonByUser(headers);
+    return await LessonGateway.getLessonsByTutor(headers);
   }
 
   public static async getLessonDetails(params: Params, headers: HeadersType): Promise<LessonDto> {

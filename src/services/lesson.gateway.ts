@@ -56,9 +56,15 @@ export class LessonGateway {
     return response.data;
   }
 
-  public static async getLessonByUser(headers: HeadersType): Promise<LessonDto> {
+  public static async getLessonsByStudent(headers: HeadersType): Promise<LessonDto> {
     const config = { headers: { authorization: headers?.authorization || null } };
-    const response = await axios.get(`${servicesConfig.lessonServiceUrl}/user/lesson`, config);
+    const response = await axios.get(`${servicesConfig.lessonServiceUrl}/student/lesson`, config);
+    return response.data;
+  }
+
+  public static async getLessonsByTutor(headers: HeadersType): Promise<LessonDto> {
+    const config = { headers: { authorization: headers?.authorization || null } };
+    const response = await axios.get(`${servicesConfig.lessonServiceUrl}/tutor/lesson`, config);
     return response.data;
   }
 }
