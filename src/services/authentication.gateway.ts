@@ -8,9 +8,8 @@ import {
 } from '@app/dtos/authentication.dtos';
 import servicesConfig from '@app/config/servicesConfig';
 
-export class AuthenticationFacade {
+export class AuthenticationGateway {
   public static async signIn(data: SignInDto): Promise<SignInResponseDto> {
-    console.log(`${servicesConfig.authenticationUrl}/signin/login`)
     const response = await axios.post(`${servicesConfig.authenticationUrl}/signin/login`, data);
     return response.data;
   }

@@ -1,7 +1,10 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
-import authenticationRoutes from '@app/routes/authentication.routes';
+import loginRoutes from '@app/routes/login.routes';
+import studentRoutes from '@app/routes/student.routes';
+import tutorRoutes from '@app/routes/tutor.routes';
+import dataRoutes from '@app/routes/data.routes';
 
 class WebServer {
   server: Application;
@@ -10,11 +13,19 @@ class WebServer {
     this.server = express();
   }
 
+  registerRoutes() {
+    this.server.use(loginRoutes);
+    this.server.use(studentRoutes);
+    this.server.use(tutorRoutes);
+    this.server.use(dataRoutes);
+  }
+
   setup() {
     this.server.use(cors());
     this.server.use(express.json());
     this.server.use(express.urlencoded({ extended: true }));
-    this.server.use(authenticationRoutes);
+
+    this.registerRoutes();
 
     return this;
   }
