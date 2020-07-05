@@ -21,6 +21,12 @@ export class LoginStrategyMethods {
   }
 
   public static async signUp(data: SignUpDto): Promise<SignInResponseDto> {
-    return await AuthenticationGateway.signUp(data);
+    const splitedName = data.name.split(' ');
+    const transformedData = {
+      ...data,
+      firstName: splitedName[0],
+      lastName: splitedName?.length === 1 ? '' : splitedName.slice(1).join(' '),
+    }
+    return await AuthenticationGateway.signUp(transformedData);
   }
 }

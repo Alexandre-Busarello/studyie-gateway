@@ -27,13 +27,7 @@ export class AuthenticationGateway {
   }
 
   public static async signUp(data: SignUpDto): Promise<SignInResponseDto> {
-    const splitedName = data.name.split(' ');
-    const transformData = {
-      ...data,
-      firstName: splitedName[0],
-      lastName: splitedName.slice(1).join(' '),
-    }
-    const response = await axios.post(`${servicesConfig.authenticationUrl}/signup/create`, transformData);
+    const response = await axios.post(`${servicesConfig.authenticationUrl}/signup/create`, data);
     return response.data;
   }
 
