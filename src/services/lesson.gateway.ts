@@ -26,7 +26,7 @@ export class LessonGateway {
     return response.data;
   }
 
-  public static async getUserPreference(headers: HeadersType): Promise<UserPreferenceDto> {
+  public static async getUsersPreference(headers: HeadersType): Promise<UserPreferenceDto> {
     const config = { headers: { authorization: headers?.authorization || null } };
     const response = await axios.get(`${servicesConfig.lessonServiceUrl}/user/preferences`, config);
     return response.data;
@@ -71,6 +71,12 @@ export class LessonGateway {
   public static async getLessonsByTutor(headers: HeadersType): Promise<LessonDto> {
     const config = { headers: { authorization: headers?.authorization || null } };
     const response = await axios.get(`${servicesConfig.lessonServiceUrl}/tutor/lesson`, config);
+    return response.data;
+  }
+
+  public static async getStudentPreference(headers: HeadersType): Promise<UserPreferenceDto> {
+    const config = { headers: { authorization: headers?.authorization || null } };
+    const response = await axios.get(`${servicesConfig.lessonServiceUrl}/student/preferences`, config);
     return response.data;
   }
 }

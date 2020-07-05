@@ -23,6 +23,6 @@ export class StudentStrategyMethods {
   }
 
   public static async getStudentPreference(headers: HeadersType): Promise<UserPreferenceDto> {
-    return await LessonGateway.getUserPreference(headers);
+    return await LessonGateway.getStudentPreference(headers);
   }
 }
