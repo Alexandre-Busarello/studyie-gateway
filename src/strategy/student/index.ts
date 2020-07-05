@@ -12,7 +12,10 @@ const MAP_OF_FUNCTIONS = {
     method: StudentStrategyMethods.getStudentPreference
   },
   'GET:/student/lesson': {
-    method: StudentStrategyMethods.getStudentLessons
+    method: StudentStrategyMethods.getStudentLessons,
+    options: {
+      paramsTypes: ['QUERY']
+    }
   },
   'GET:/student/lesson/:id': {
     method: StudentStrategyMethods.getLessonDetails,

@@ -1,5 +1,5 @@
 import { LessonGateway } from '@app/services/lesson.gateway';
-import { Params } from '@app/dtos/request.dtos'
+import { Params, Query } from '@app/dtos/request.dtos'
 import {
   UserPreferenceDto,
   LessonDto
@@ -7,7 +7,10 @@ import {
 import { HeadersType } from '@app/dtos/request.dtos'
 
 export class StudentStrategyMethods {
-  public static async getStudentLessons(headers: HeadersType): Promise<LessonDto> {
+  public static async getStudentLessons(query: Query, headers: HeadersType): Promise<LessonDto> {
+    if (query?.q) {
+      return await LessonGateway.getLessonsByQuery(query, headers);
+    }
     return await LessonGateway.getLessonsByStudent(headers);
   }
 
