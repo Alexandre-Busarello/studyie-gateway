@@ -22,6 +22,12 @@ const MAP_OF_FUNCTIONS = {
   },
   'GET:/tutor/lesson': {
     method: TutorStrategyMethods.getTutorLessons
+  },
+  'GET:/tutor/:id/info': {
+    method: TutorStrategyMethods.getTutorInfo,
+    options: {
+      paramsTypes: ['PARAMS']
+    }
   }
 }
 

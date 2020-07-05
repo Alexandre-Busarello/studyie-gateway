@@ -35,4 +35,12 @@ router.get('/tutor/lesson/:id', async (req, res) => {
   }
 });
 
+router.get('/tutor/:id/info', async (req, res) => {
+  try {
+    return res.json(await Dispatcher.executeStrategy(req, '/tutor/:id/info'));
+  } catch (e) {
+    return res.status(400).json((e.response && e.response.data) || e);
+  }
+});
+
 export default router;

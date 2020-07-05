@@ -28,3 +28,13 @@ export interface SignUpDto {
   email: string;
   password: string;
 }
+
+export interface UserInfo {
+  id: number;
+  externalId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  pictureUrl: string;
+  isSocialLogin: boolean;
+}

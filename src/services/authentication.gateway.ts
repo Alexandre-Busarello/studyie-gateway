@@ -4,8 +4,10 @@ import {
   SignInByFacebookDto,
   SignInByGoogleDto,
   SignInResponseDto,
-  SignUpDto
+  SignUpDto,
+  UserInfo
 } from '@app/dtos/authentication.dtos';
+import { HeadersType } from '@app/dtos/request.dtos'
 import servicesConfig from '@app/config/servicesConfig';
 
 export class AuthenticationGateway {
@@ -32,6 +34,12 @@ export class AuthenticationGateway {
       lastName: splitedName.slice(1).join(' '),
     }
     const response = await axios.post(`${servicesConfig.authenticationUrl}/signup/create`, transformData);
+    return response.data;
+  }
+
+  public static async getUserInfo(id: string, headers: HeadersType): Promise<UserInfo> {
+    const config = { headers: { authorization: headers?.authorization || null } };
+    const response = await axios.get(`${servicesConfig.authenticationUrl}/user/${id}/info`, config);
     return response.data;
   }
 }
